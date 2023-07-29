@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 
 
-You should now be able to run the app.py file that will start the application! If you have any trouble feel free to contact me. 
+You should now be able to **run the app.py** file that will start the application! If you have any trouble feel free to contact me. 
 
 
 
