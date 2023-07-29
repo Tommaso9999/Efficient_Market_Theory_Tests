@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from datetime import datetime, timedelta
 sys.path.append('../Thesis Practical Work')
+import os 
 
 import tkinter as tk
 from tkinter import ttk
@@ -13,7 +14,6 @@ import pandas as pd
 import pandas as pd
 from squarify import normalize_sizes, squarify
 from bokeh.plotting import figure, show
-from bokeh.sampledata.sample_superstore import data
 from bokeh.transform import factor_cmap
 from bokeh.models import PrintfTickFormatter
 from bokeh.models import Title
@@ -22,6 +22,11 @@ import ipywidgets as widgets
 import math
 from bokeh.models import HoverTool
 from bokeh.models import ColumnDataSource
+
+
+current_path = os.getcwd()
+other_folder_path = os.path.join(current_path, "compare_markets/strategies_comparisons_results")
+csv_file_path = os.path.join(other_folder_path, "final.csv")
 
 
 def compare_markets(market: str, strategy: str, date_range: str, top: str, proportion: int, pause):
@@ -38,7 +43,8 @@ def compare_markets(market: str, strategy: str, date_range: str, top: str, propo
         top = int(top)
 
     if market == "S&P500's 11 XL sectors":
-        dfo = pd.read_csv(r'strategies_comparisons_results/final.csv')
+     
+        dfo = pd.read_csv(csv_file_path)
         dfo = dfo[dfo['market'] != 'S&P 500']
         dfo = dfo[dfo['strategy'] == strategy]
         dfo = dfo[dfo['time window'] == date_range]
@@ -124,7 +130,7 @@ def compare_best(market: str, strategy: str, date_range: str, top: str, pause):
           top=30
       
       if market =="S&P500's 11 XL sectors":
-        dfo = pd.read_csv(r'strategies_comparisons_results/final.csv')
+        dfo = pd.read_csv(csv_file_path)
         dfo = dfo[dfo['market'] != 'S&P 500']
         dfo = dfo[dfo['strategy'] == strategy]
         dfo = dfo[dfo['time window'] == date_range]
